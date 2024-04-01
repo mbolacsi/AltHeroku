@@ -61,13 +61,13 @@ public class HerokuApplication {
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS table_timestamp_and_random_string (tick timestamp, random_string varchar(30))");
       stmt.executeUpdate("INSERT INTO table_timestamp_and_random_string VALUES (now(), '" + getRandomString() + "')");
       ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+      System.out.println("Print Statement in database method, name: Michael Olacsi");
 
       ArrayList<String> output = new ArrayList<String>();
       while (rs.next()) {
         output.add("Read from DB: " + rs.getTimestamp("tick") + " " + getRandomString());
       }
 
-      System.out.println("Michael Olacsi");
       model.put("records", output);
       return "db";
     } catch (Exception e) {
